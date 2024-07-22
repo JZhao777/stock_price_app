@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!-- adding internet permission -->
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        tools:ignore="ManifestOrder" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Stock_Price_App"
         tools:targetApi="31">
+        <activity
+            android:name=".menu_info"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
