@@ -35,6 +35,7 @@ public class menu_info extends AppCompatActivity {
     private EditText tickerEditText;
     private TextView apiResponseTextView;
     private Button getPriceButton;
+    private Button clearButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class menu_info extends AppCompatActivity {
         tickerEditText = findViewById(R.id.tickerEditText);
         apiResponseTextView = findViewById(R.id.apiResponseTextView);
         getPriceButton = findViewById(R.id.getPriceButton);
+        clearButton = findViewById(R.id.clearButton);
 
         getPriceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +64,21 @@ public class menu_info extends AppCompatActivity {
                 }
             }
         });
+
+
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tickerEditText.setText("");
+                apiResponseTextView.setText(""); // Clear the response TextView as well
+            }
+        });
+
+
     }
+
+
+
 
     private void getData(String ticker) {
         // Combine base url and input ticker name to get full url
@@ -126,4 +142,6 @@ public class menu_info extends AppCompatActivity {
         // Add the request to the RequestQueue
         mRequestQueue.add(mStringRequest);
     }
+
+
 }
