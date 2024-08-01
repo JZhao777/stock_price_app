@@ -36,6 +36,14 @@ public class menu_info extends AppCompatActivity {
     private TextView apiResponseTextView;
     private Button getPriceButton;
     private Button clearButton;
+    private TextView apiResponseTickerName;
+    private TextView apiResponseName;
+    private TextView apiResponseExchange;
+    private TextView apiResponsePrice;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +57,10 @@ public class menu_info extends AppCompatActivity {
 //        });
         // Initialize UI components
         tickerEditText = findViewById(R.id.tickerEditText);
-        apiResponseTextView = findViewById(R.id.apiResponseTextView);
+        apiResponseTickerName = findViewById(R.id.apiResponseTickerName);
+        apiResponseName = findViewById(R.id.apiResponseName);
+        apiResponseExchange = findViewById(R.id.apiResponseExchange);
+        apiResponsePrice = findViewById(R.id.apiResponsePrice);
         getPriceButton = findViewById(R.id.getPriceButton);
         clearButton = findViewById(R.id.clearButton);
 
@@ -70,9 +81,13 @@ public class menu_info extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tickerEditText.setText("");
-                apiResponseTextView.setText(""); // Clear the response TextView as well
+                apiResponseName.setText("");       // Clear the response TextView
+                apiResponseTickerName.setText("");     // Clear the ticker name TextView
+                apiResponseExchange.setText("");       // Clear the exchange TextView
+                apiResponsePrice.setText("");          // Clear the price TextView
             }
         });
+
 
 
     }
@@ -103,9 +118,17 @@ public class menu_info extends AppCompatActivity {
                     String exchange = jsonObject.getString("exchange");
                     long updated = jsonObject.getLong("updated");
 
+
                     // Display the response
-                    String displayText = "Ticker: " + ticker + "\nName: " + name + "\nPrice: $" + price + "\nExchange: " + exchange + "\nUpdated: " + updated;
-                    apiResponseTextView.setText(displayText);
+                    //String displayText = "Ticker: " + ticker + "\nName: " + name + "\nPrice: $" + price + "\nExchange: " + exchange + "\nUpdated: " + updated;
+                    String displayTickerName = ticker;
+                    apiResponseTickerName.setText(displayTickerName);
+                    String displayName = name;
+                    apiResponseName.setText(displayName);
+                    String displayExchange = exchange;
+                    apiResponseExchange.setText(displayExchange);
+                    String displayPrice = String.valueOf(price);
+                    apiResponsePrice.setText(displayPrice);
                 } catch (JSONException e) {
                     Log.e(TAG, "Error parsing response: " + response, e);
                     Toast.makeText(getApplicationContext(), "Error parsing response", Toast.LENGTH_LONG).show();
